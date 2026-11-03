@@ -1,0 +1,374 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f3f6ff;
+    color: #263451;
+}
+
+.header {
+    background: linear-gradient(135deg, #334e9e, #657ee8);
+    color: white;
+    padding: 25px 8%;
+}
+
+.header h1 {
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.header p {
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.intro,
+.game-panel {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 18px rgba(40, 60, 100, 0.07);
+}
+
+.intro h2,
+.game-panel h3 {
+    color: #334e9e;
+    margin-bottom: 10px;
+}
+
+.intro p {
+    line-height: 1.7;
+}
+
+.small-text,
+.diagram-heading p {
+    font-size: 14px;
+    color: #68738b;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Pilihan persegi */
+
+.square-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.square-card {
+    min-height: 120px;
+    background: #eef2ff;
+    border: 2px solid #d8e0ff;
+    border-radius: 13px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    cursor: grab;
+    user-select: none;
+    touch-action: manipulation;
+    transition: 0.2s;
+}
+
+.square-card:hover {
+    border-color: #657ee8;
+    transform: translateY(-3px);
+}
+
+.square-card.selected {
+    background: #dce5ff;
+    border-color: #334e9e;
+    box-shadow: 0 0 0 3px rgba(101, 126, 232, 0.15);
+}
+
+.square-card.dragging {
+    opacity: 0.4;
+}
+
+.square-visual {
+    width: 48px;
+    height: 48px;
+    background: #8299f2;
+    border: 2px solid #334e9e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.square-card strong {
+    color: #334e9e;
+    font-size: 14px;
+}
+
+.square-card small {
+    color: #68738b;
+    font-size: 11px;
+}
+
+/* Diagram segitiga */
+
+.diagram-heading {
+    margin-bottom: 12px;
+}
+
+.diagram-wrapper {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fbfcff;
+    border: 1px solid #e1e6f8;
+    border-radius: 16px;
+    padding: 10px;
+}
+
+#pythagorasDiagram {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.triangle-shape {
+    fill: #dce5ff;
+    stroke: #334e9e;
+    stroke-width: 4;
+}
+
+.target-square {
+    fill: #f2f4ff;
+    stroke: #8299d9;
+    stroke-width: 3;
+    stroke-dasharray: 10 7;
+    cursor: pointer;
+    transition: fill 0.2s, stroke 0.2s;
+}
+
+.target-square.drag-over {
+    fill: #dce5ff;
+    stroke: #334e9e;
+    stroke-width: 5;
+}
+
+.target-square.filled {
+    fill: #a8b9f6;
+    stroke: #334e9e;
+    stroke-width: 4;
+    stroke-dasharray: none;
+}
+
+.target-square.correct {
+    fill: #b9e8c8;
+    stroke: #368454;
+    stroke-dasharray: none;
+}
+
+.right-angle {
+    fill: none;
+    stroke: #334e9e;
+    stroke-width: 3;
+}
+
+.side-label {
+    font-size: 23px;
+    font-weight: bold;
+    fill: #334e9e;
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+.vertex-label {
+    font-size: 23px;
+    font-weight: bold;
+    fill: #263451;
+    pointer-events: none;
+}
+
+.square-number {
+    font-size: 25px;
+    font-weight: bold;
+    fill: #263451;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    pointer-events: none;
+}
+
+.square-area {
+    font-size: 16px;
+    fill: #334e9e;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    pointer-events: none;
+}
+
+/* Keterangan */
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    color: #68738b;
+    font-size: 13px;
+}
+
+.legend span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.legend i {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.legend-triangle {
+    background: #dce5ff;
+    border: 1px solid #334e9e;
+}
+
+.legend-square {
+    background: #f2f4ff;
+    border: 1px dashed #8299d9;
+}
+
+/* Persamaan */
+
+.equation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #334e9e;
+    margin: 25px 0;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+button {
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.check-btn {
+    background: #334e9e;
+    color: white;
+}
+
+.reset-btn {
+    background: #e8ecf8;
+    color: #334e9e;
+}
+
+.feedback {
+    display: none;
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.feedback.success {
+    display: block;
+    background: #e2f7e9;
+    color: #247344;
+}
+
+.feedback.error {
+    display: block;
+    background: #fff0e8;
+    color: #ad542b;
+}
+
+.explanation {
+    display: none;
+    margin-top: 15px;
+    padding: 18px;
+    background: #eef7ff;
+    border-radius: 12px;
+    text-align: center;
+    line-height: 1.7;
+}
+
+.explanation strong {
+    color: #334e9e;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #78839c;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 21px;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+
+    .intro,
+    .game-panel {
+        padding: 17px;
+    }
+
+    .square-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .square-card {
+        min-height: 105px;
+    }
+
+    .diagram-wrapper {
+        padding: 4px;
+    }
+
+    .equation {
+        font-size: 21px;
+    }
+}
